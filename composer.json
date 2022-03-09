@@ -1,0 +1,16 @@
+{
+    "name": "homework/cms",
+    "description": "cms",
+    "authors": [
+        {
+            "name": "Aleksandr Zajac",
+            "email": "mr.goodalex@gmail.com"
+        }
+    ],
+    "require": {
+        "illuminate/database": "^8.47"
+    },   
+    "autoload": {
+        "psr-4": {"App\\": "src/"}
+    }
+}
