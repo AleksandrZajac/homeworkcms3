@@ -10,12 +10,12 @@ class ArticlesController
     public function index()
     {
         $articles = Article::all();
-        return new View('articles.index', ['title' => 'All articles', 'articles' => $articles]);
+        return new View('articles.index', compact('articles'));
     }
 
     public function create()
     {
-        // return view('articles.create');
+        return new View('articles.create');
     }
 
     public function store($request)
@@ -25,9 +25,11 @@ class ArticlesController
         // return redirect('/articles');
     }
 
-    public function show(Article $article)
+    public function show($slug)
     {
-        return new View('articles.show', ['title' => 'Show article', 'article' => $article]);
+        $article = Article::where('slug', $slug)->first();
+
+        return new View('articles.show', compact('article'));
     }
 
     public function edit($slug)

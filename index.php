@@ -29,7 +29,13 @@ $router->get('/test3', function () {
 $router->get('/book/reader', BooksController::class . '@reader');
 
 $router->get('/', ArticlesController::class . '@index');
+$router->get('/articles/create', ArticlesController::class . '@create');
 $router->get('/articles/*', ArticlesController::class . '@show');
+
+
+// $router->get('/articles/*', function ($param1) {
+//     return "Test page with param1 = $param1";
+// });
 
 $router->get('/test/*/test2/*', function ($param1, $param2) {
     return "Test page with param1 = $param1 param2 = $param2";

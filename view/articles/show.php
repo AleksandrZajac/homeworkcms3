@@ -1,9 +1,13 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
-
-<p><?= $article->slug ?></p>
-<p><?= $article->title ?></p>
-<p><?= $article->image ?></p>
-<p><?= $article->description ?></p>
+<?php
+// echo '<pre>';
+// print_r($data['article']);
+// echo '</pre>';
+?>
+<p><?= $data['article']->slug ?></p>
+<p><?= $data['article']->title ?></p>
+<p><?= $data['article']->image ?></p>
+<p><?= $data['article']->description ?></p>
 <hr>
-
+<a href="">Обновить статью</a>
 <?php require VIEW_DIR . 'layout/footer.php'; ?>
