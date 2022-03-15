@@ -31,7 +31,7 @@ $router->get('/book/reader', BooksController::class . '@reader');
 $router->get('/', ArticlesController::class . '@index');
 $router->get('/articles/create', ArticlesController::class . '@create');
 $router->get('/articles/*', ArticlesController::class . '@show');
-
+$router->post('/', ArticlesController::class . '@store');
 
 // $router->get('/articles/*', function ($param1) {
 //     return "Test page with param1 = $param1";
