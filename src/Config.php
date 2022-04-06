@@ -12,6 +12,7 @@ final class Config
     private function __construct()
     {
         self::$configs['db'] = require $_SERVER['DOCUMENT_ROOT'] . '/configs/db.php';
+        self::$configs['uploads_path'] = $_SERVER['DOCUMENT_ROOT'] . '/uploads/';
     }
 
     public static function getInstance(): Config

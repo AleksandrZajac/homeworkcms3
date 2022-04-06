@@ -14,7 +14,7 @@ class Application
         $this->initialize();
     }
 
-    private function initialize() 
+    private function initialize()
     {
         $capsule = new Capsule;
         $config = Config::getInstance();
@@ -27,13 +27,12 @@ class Application
     {
         try {
             $routerDispatch = $this->router->dispatch();
-            
+
             if ($routerDispatch instanceof Renderable) {
                 echo $routerDispatch->render();
             } else {
                 echo $routerDispatch;
             }
-
         } catch (\Exception $e) {
             $this->renderException($e);
         }
@@ -51,6 +50,6 @@ class Application
             }
 
             echo 'Возникла ошибка: ' .  $e->getMessage() . ' Код ошибки ' . $errorCode;
-        }    
+        }
     }
 }
