@@ -1,10 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Services\FileUpload;
 
 use App\Config;
 
-class Image
+class File
 {
     private $path;
     private $file;

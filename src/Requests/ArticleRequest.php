@@ -2,10 +2,8 @@
 
 namespace App\Requests;
 
-// use App\Form\FormValidation;
-use App\Form\FormRequests;
-use App\Form\FormErrors;
-// use App\Form\FileValidation;
+use App\Services\Validation\FormRequests;
+use App\Services\Validation\FormErrors;
 
 class ArticleRequest
 {
@@ -22,11 +20,8 @@ class ArticleRequest
     {
         return [
             'slug' => 'required|unique:articles,slug',
-            'title'  => 'required|max:4',
-            'image' => 'required|mimes:png',
-            'image2' => 'required|image',
-
-            // 'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:48',
+            'title'  => 'required|min:3',
+            'image' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:4800',
             'description' => 'required',
         ];
     }

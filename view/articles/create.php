@@ -17,19 +17,10 @@
         <label for="articleTitle" class="form-label">Title</label>
         <input type="text" class="form-control" id="title" name="title">
     </div>
-    <!-- <div class="mb-3">
-        <label for="articleImage" class="form-label">Image</label>
-        <input type="text" class="form-control" id="image" name="image">
-    </div> -->
     <div class="mb-3">
         <strong>Image:</strong>
         <input type="file" name="image" class="form-control" id="image" placeholder="image">
     </div>
-    <div class="mb-3">
-        <strong>Image:</strong>
-        <input type="file" name="image2" class="form-control" id="image2" placeholder="image2">
-    </div>
-
     <div class="mb-3">
         <label for="description">Детальное описание статьи</label>
         <textarea class="form-control" id="description" name="description">

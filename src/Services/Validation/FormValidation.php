@@ -1,15 +1,14 @@
 <?php
 
-namespace App\Form;
+namespace App\Services\Validation;
 
 use Illuminate\Validation;
 use Illuminate\Filesystem;
 use Illuminate\Translation;
-use Symfony\Component\HttpFoundation\Request;
 use Illuminate\Validation\DatabasePresenceVerifier;
 use Illuminate\Database\Capsule\Manager as Capsule;
 use App\Config;
-use App\Form\FileValidation;
+use App\Services\Validation\DataValidation;
 
 class FormValidation
 {
@@ -64,21 +63,8 @@ class FormValidation
 
     public function dataToValidate()
     {
-        // foreach ($_POST as $key => $value) {
-        //     $this->dataToValidate[$key] = trim(htmlspecialchars($value));
-        // }
-
-        // foreach ($_FILES as $key => $value) {
-        //     $this->dataToValidate[$key] = $value['type'];
-        // }
-        // $this->dataToValidate = Request::createFromGlobals();
-        $validation = new FileValidation();
-        $this->dataToValidate = $validation->fileValidation();
-
-        echo '<pre>';
-        print_r($this->dataToValidate);
-        echo '</pre>';
-        // exit();
+        $validation = new DataValidation();
+        $this->dataToValidate = $validation->formValidation();
 
         return $this->dataToValidate;
     }

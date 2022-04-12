@@ -12,9 +12,8 @@
     <p><a href="/articles/<?= $article->slug ?>"><?= $article->slug ?></a></p>
     <p><?= $article->id ?></p>
     <p><?= $article->title ?></p>
-    <p><?= $article->image ?></p>
+    <img class="image" src="<?= $article->image ?>" alt="Photo">
     <p><?= $article->description ?></p>
-    <!-- <img src="/image/{{ $product->image }}" width="100px"> -->
     <hr>
 <?php endforeach; ?>
 
