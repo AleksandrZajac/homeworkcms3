@@ -9,4 +9,3 @@ password: 11111111
 user
 email: mike@gmail.com
 password: 111111
-12345678
