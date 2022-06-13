@@ -12,7 +12,7 @@ class NotFoundException extends HttpException implements Renderable
         $errorCode = $this->getCode();
 
         if ($errorCode === 0) {
-            $errorCode = 500;
+            $errorCode = 404;
         }
 
         echo 'Возникла ошибка: ' . $this->getMessage() . ' Код ошибки - ' . $errorCode;

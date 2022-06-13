@@ -3,83 +3,45 @@
 namespace App\Controllers;
 
 use App\Models\Article;
+use App\Exception\UserExceptions;
+use App\Models\Subscribe;
 use App\Requests\ArticleRequest;
 use App\View;
 use App\Services\FileUpload\File;
+use App\Config;
+use App\Services\Queries\GetArticleComments;
+use App\Services\Email\SendEmail;
+use App\Services\Settings;
 
-class ArticlesController extends PrivateController
+class ArticlesController extends BaseController
 {
-    public function index($success = '')
+    public function index()
     {
-        $articles = Article::all();
-        $title = 'Articles';
-
-        return new View('articles.index', compact('articles', 'title', 'success'));
-    }
-
-    public function create()
-    {
-        $title = 'Создать статью';
-
-        return new View('articles.create', compact('title'));
-    }
-
-    public function store()
-    {
-        $validator = new ArticleRequest();
-        $errors = $validator->errors();
-        $title = 'Создать статью';
-
-        if (!$errors) {
-            $image = new File('image');
-            $image->uploadFile();
-
-            Article::create([
-                'owner_id' => 1,
-                'slug' => $validator->request('slug'),
-                'title' => $validator->request('title'),
-                'image' => $image->addFileName(),
-                'description' => $validator->request('description'),
-                'is_published' => $validator->request('is_published'),
-            ]);
-
-            return $this->index('Cтатья успешно создана');
+        if (isset($_SESSION['login']) && Subscribe::where('email', $_SESSION['login'])->first()) {
+            $_SESSION['subscribe'] = 1;
+        } else {
+            $_SESSION['subscribe'] = 0;
         }
 
-        return new View('articles.create', compact('title', 'errors', 'validator'));
+        $settings = Settings::getSettings();
+        $pagination = Article::pagination($settings['items_on_articles_page'], 1);
+        $articles = $pagination['articles'];
+        $pages = $pagination['pages'];
+        $title = 'Articles';
+
+        return new View('articles.index', compact('articles', 'title', 'pages'));
     }
 
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
-        $title = 'Article';
+        $title = $article->title;
+        $_SESSION['article_id'] = $article->id;
+        $roles = Config::getInstance()->getConfig('env')['user_role'];
+        $statuses = Config::getInstance()->getConfig('env')['status'];
 
-        return new View('articles.show', compact('article', 'title'));
-    }
+        $comments = GetArticleComments::getComments($article->id);
 
-    public function edit($slug)
-    {
-        // $item = Article::where('slug', $slug)->get();
-
-        // return view('articles.edit', compact('item'));
-    }
-
-    public function update($request, $id)
-    {
-        // $form_data = array(
-        //     'user_id' => $user_id,
-        //     'order_number'    =>  $request->order_number,
-        // );
-        // Article::create(request()->all());
-        // Article::find($id)->update($form_data);
-        // return redirect('/');
-    }
-
-    public function destroy($id)
-    {
-        // $item = Article::find($id);
-        // $item->delete();
-
-        // return redirect('/articles');
+        return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'title'));
     }
 }

@@ -1,9 +1,17 @@
 <?php
 
-use App\Controllers\HomeController;
-use App\View;
-use App\Controllers\BooksController;
 use App\Controllers\ArticlesController;
+use App\Controllers\AdminArticlesController;
+use App\Controllers\Auth\LoginController;
+use App\Controllers\Auth\RegisterController;
+use App\Controllers\PersonalAreaController;
+use App\Controllers\SubscribeController;
+use App\Controllers\CommentController;
+use App\Controllers\StaticPagesController;
+use App\Controllers\AdminUserRoleController;
+use App\Controllers\AdminCommentsController;
+use App\Controllers\AdminSubscribesController;
+use App\Controllers\AdminSettingsController;
 use App\Application;
 use App\Router;
 
@@ -14,31 +22,52 @@ require_once 'bootstrap.php';
 
 $router = new Router();
 
-// $router->get('/',      HomeController::class . '@index');
-$router->get('/about', HomeController::class . '@about');
-$router->get('/test1',     function () {
-    return 'test1';
-});
-$router->get('/test2', function () {
-    return new View('index', ['title' => 'Index Page']);
-});
-$router->get('/test3', function () {
-    return new View('personal.messages.show', ['title' => 'Personal Messages Page']);
-});
-$router->get('/book/reader', BooksController::class . '@reader');
-
 $router->get('/', ArticlesController::class . '@index');
-$router->get('/articles/create', ArticlesController::class . '@create');
 $router->get('/articles/*', ArticlesController::class . '@show');
-$router->post('/articles/create', ArticlesController::class . '@store');
 
-// $router->get('/articles/*', function ($param1) {
-//     return "Test page with param1 = $param1";
-// });
+$router->get('/admin/articles', AdminArticlesController::class . '@index');
+$router->get('/admin/articles/create', AdminArticlesController::class . '@create');
+$router->get('/admin/articles/*', AdminArticlesController::class . '@show');
+$router->get('/admin/articles/*/edit', AdminArticlesController::class . '@edit');
+$router->post('/admin/articles/create', AdminArticlesController::class . '@store');
+$router->post('/admin/articles/*/edit', AdminArticlesController::class . '@update');
+$router->post('/admin/articles/*/delete', AdminArticlesController::class . '@destroy');
 
-$router->get('/test/*/test2/*', function ($param1, $param2) {
-    return "Test page with param1 = {$param1} param2 = {$param2}";
-});
+$router->get('/login/form', LoginController::class . '@showLoginForm');
+$router->post('/login/check', LoginController::class . '@checkUser');
+
+$router->get('/register/form', RegisterController::class . '@showRegisterForm');
+$router->post('/register/create', RegisterController::class . '@create');
+$router->get('/logout', RegisterController::class . '@logout');
+
+$router->get('/user/id/*', PersonalAreaController::class . '@show');
+$router->post('/user/id/*', PersonalAreaController::class . '@update');
+
+$router->post('/subscribe', SubscribeController::class . '@subscribe');
+$router->post('/subscribe/destroy/', SubscribeController::class . '@destroy');
+
+$router->post('/articles/*', CommentController::class . '@addComment');
+
+$router->get('/pages/', StaticPagesController::class . '@index');
+$router->get('/page/*', StaticPagesController::class . '@show');
+$router->get('/static_page/create', StaticPagesController::class . '@create');
+$router->post('/static_page/create', StaticPagesController::class . '@store');
+$router->get('/static_page/*/edit', StaticPagesController::class . '@edit');
+$router->post('/static_page/*/edit', StaticPagesController::class . '@update');
+$router->post('/page/*/delete', StaticPagesController::class . '@destroy');
+
+$router->get('/admin/user/role', AdminUserRoleController::class . '@edit');
+$router->post('/user/role/*/edit', AdminUserRoleController::class . '@update');
+
+$router->get('/admin/comments', AdminCommentsController::class . '@edit');
+$router->post('/admin/comment/*/edit', AdminCommentsController::class . '@update');
+
+$router->get('/admin/subscribes', AdminSubscribesController::class . '@edit');
+$router->post('/admin/subscribes/*/delete', AdminSubscribesController::class . '@destroy');
+$router->post('/admin/subscribes/create', AdminSubscribesController::class . '@store');
+
+$router->get('/admin/settings', AdminSettingsController::class . '@edit');
+$router->post('/admin/settings/edit', AdminSettingsController::class . '@update');
 
 $application = new Application($router);
 

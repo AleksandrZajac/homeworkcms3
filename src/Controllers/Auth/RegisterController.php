@@ -1,36 +1,55 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Controllers\Auth;
 
-class RegisterController
+use App\Models\User;
+use App\Requests\RegisterRequest;
+use App\Controllers\BaseController;
+use App\Config;
+use App\View;
+
+class RegisterController extends BaseController
 {
-    protected $redirectTo = '/';
-
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function create()
     {
-        // $this->middleware('guest');
+        $title = 'Создать нового пользователя';
+        $validator = new RegisterRequest();
+        $errors = $validator->errors();
+        $old = $_POST;
+
+        if ($validator->request('password') !== $validator->request('password2')) {
+            $errors[] = 'Passwords do not match';
+        }
+
+        if (!$errors) {
+            User::create([
+                'name' => $validator->request('name'),
+                'email' => $validator->request('email'),
+                'password' => password_hash($validator->request('password'), PASSWORD_DEFAULT),
+                'role_id' => Config::getInstance()->getConfig('env')['user_role']['auth_user'],
+            ]);
+
+            $user = new User();
+
+            $user->authorized($validator->request('email'), $validator->request('password'));
+
+            $this->redirect('/');
+        }
+
+        return new View('authorization.register', compact('title', 'errors', 'old'));
     }
 
-    protected function validator(array $data)
+    public function showRegisterForm()
     {
-        // return Validator::make($data, [
-        //     'name' => ['required', 'string', 'max:255'],
-        //     'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-        //     'password' => ['required', 'string', 'min:8', 'confirmed'],
-        // ]);
+        $title = 'Registration';
+
+        return new View('authorization.register', compact('title'));
     }
 
-    protected function create(array $data)
+    public function logout()
     {
-        // return User::create([
-        //     'name' => $data['name'],
-        //     'email' => $data['email'],
-        //     'password' => Hash::make($data['password']),
-        // ]);
+        $this->closeSession();
+
+        $this->redirect('/');
     }
 }

@@ -9,12 +9,17 @@ class File
     private $path;
     private $file;
     private $ext;
+    public $error;
 
     public function __construct($fileName)
     {
-        $this->path = Config::getInstance()->getConfig('uploads_path');
-        $this->file = $_FILES[$fileName];
-        $this->ext = $this->pathInfo()['extension'];
+        if (!$_FILES[$fileName]['error']) {
+            $this->path = Config::getInstance()->getConfig('uploads_path');
+            $this->file = $_FILES[$fileName];
+            $this->ext = $this->pathInfo()['extension'];
+        } else {
+            return $this->error = 'Upload error';
+        }
     }
 
     public function uploadFile()
@@ -24,7 +29,7 @@ class File
 
     public function addFileName()
     {
-        return 'uploads/' . $this->fileName() . '.' . $this->ext;
+        return '/uploads/' . $this->fileName() . '.' . $this->ext;
     }
 
     public function pathInfo()

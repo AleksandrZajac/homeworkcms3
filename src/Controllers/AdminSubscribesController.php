@@ -1,0 +1,57 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\Subscribe;
+use App\Requests\SubscribeRequest;
+use App\View;
+
+class AdminSubscribesController extends BaseController
+{
+    public function edit()
+    {
+        $title = 'Подписки';
+        $itemsOnPage = 20;
+
+        if (isset($_GET['itemsOnPage'])) {
+            $pagination = Subscribe::pagination($_GET['itemsOnPage']);
+            $itemsOnPage = $_GET['itemsOnPage'];
+        } else {
+            $pagination = Subscribe::pagination($itemsOnPage);
+        }
+
+        $subscribes = $pagination['subscribes'];
+        $pages = $pagination['pages'];
+
+        return new View('subscribes.edit', compact('title', 'subscribes', 'pages', 'itemsOnPage'));
+    }
+
+    public function destroy($id)
+    {
+        $item = Subscribe::where('id', $id)->delete();
+
+        $this->redirect('/admin/subscribes');
+    }
+
+    public function store()
+    {
+        $validator = new SubscribeRequest();
+        $errors = $validator->errors();
+        $subscribe = Subscribe::where('email', $_POST['email'])->first();
+        $subscribe ? $errors[] = 'Пользователь уже подписан' : '';
+
+        if (!$errors) {
+            Subscribe::create([
+                'email' => $validator->request('email'),
+            ]);
+
+            $_SESSION['success'] = 'Добавлен новый подписчик';
+
+            $this->redirect('/admin/subscribes');
+        }
+
+        $_SESSION['errors'] = $errors;
+
+        $this->redirect('/admin/subscribes');
+    }
+}
