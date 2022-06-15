@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Настройки</title>
 <div class="container admin-subscribes">
     <?php if (isset($data['errors'])) : ?>
         <?php foreach ($data['errors'] as $key => $value) : ?>

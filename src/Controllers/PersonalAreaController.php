@@ -13,7 +13,6 @@ class PersonalAreaController extends BaseController
     public function show($id)
     {
         $_SESSION['subscribe'] = 0;
-        $title = 'Личный кабинет';
 
         if (Subscribe::where('email', $_SESSION['login'])->first()) {
             $_SESSION['subscribe'] = 1;
@@ -21,7 +20,7 @@ class PersonalAreaController extends BaseController
 
         $old = User::where('id', $id)->first();
 
-        return new View('personal.area.show', compact('old', 'title'));
+        return new View('personal.area.show', compact('old'));
     }
 
     public function update($id)
@@ -29,7 +28,6 @@ class PersonalAreaController extends BaseController
         $article = User::where('id', $id)->first();
         $validator = new PersonalAreaRequest($id);
         $errors = $validator->errors();
-        $title = 'Личный кабинет';
         $old = $_POST;
 
         if (!$errors) {
@@ -53,6 +51,6 @@ class PersonalAreaController extends BaseController
             $this->redirect("/user/id/$id");
         }
 
-        return new View('personal.area.show', compact('title', 'errors'));
+        return new View('personal.area.show', compact('errors'));
     }
 }

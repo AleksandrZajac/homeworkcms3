@@ -6,11 +6,10 @@ use App\Models\Subscribe;
 use App\Requests\SubscribeRequest;
 use App\View;
 
-class AdminSubscribesController extends BaseController
+class AdminSubscribesController extends AdminController
 {
     public function edit()
     {
-        $title = 'Подписки';
         $itemsOnPage = 20;
 
         if (isset($_GET['itemsOnPage'])) {
@@ -23,12 +22,12 @@ class AdminSubscribesController extends BaseController
         $subscribes = $pagination['subscribes'];
         $pages = $pagination['pages'];
 
-        return new View('subscribes.edit', compact('title', 'subscribes', 'pages', 'itemsOnPage'));
+        return new View('subscribes.edit', compact('subscribes', 'pages', 'itemsOnPage'));
     }
 
     public function destroy($id)
     {
-        $item = Subscribe::where('id', $id)->delete();
+        Subscribe::where('id', $id)->delete();
 
         $this->redirect('/admin/subscribes');
     }

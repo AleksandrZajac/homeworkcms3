@@ -1,4 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
+
+<title>Редактировать статью</title>
 <div class="container">
     <h4>Редактировать задачу</h4>
     <?php if (isset($data['errors'])) : ?>

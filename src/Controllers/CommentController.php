@@ -21,10 +21,9 @@ class CommentController extends BaseController
         if (!isset($_SESSION['user_id'])) {
             $errors[] = 'Не авторизованный пользователь не может оставить комментарий';
             $article = Article::where('id', $_SESSION['article_id'])->first();
-            $title = $article->title;
             $comments = GetArticleComments::getComments($article->id);
 
-            return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'errors', 'title'));
+            return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'errors'));
         }
 
         $errors = $validator->errors();
@@ -44,9 +43,8 @@ class CommentController extends BaseController
         }
 
         $article = Article::where('id', $_SESSION['article_id'])->first();
-        $title = $article->title;
         $comments = GetArticleComments::getComments($article->id);
 
-        return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'errors', 'title'));
+        return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'errors'));
     }
 }

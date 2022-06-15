@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Личный кабинет</title>
 <div class="container profile-page">
     <p>Личный кабинет</p>
     <div class="row">

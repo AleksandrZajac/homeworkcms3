@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Подписки</title>
 <div class="container admin-subscribes">
     <div class="row">
         <div class="col-md-12 blog-main">

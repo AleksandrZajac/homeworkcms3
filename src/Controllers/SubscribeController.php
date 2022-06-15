@@ -3,38 +3,40 @@
 namespace App\Controllers;
 
 use App\Models\Subscribe;
+use App\JsonView;
 
 class SubscribeController extends BaseController
 {
     public function subscribe()
     {
-        if (isset($_POST['email'])) {
-            if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
-                echo json_encode(['message' => 'Ввведите корректный емайл']);
-            } else {
+        if (isset($_POST['email']) && empty($_POST['email'])) {
+            return $this->json(['message' => 'Не задан емайл']);
+        }
 
-                $subscribe = Subscribe::where('email', $_POST['email'])->first();
+        if (!filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
+            return $this->json(['message' => 'Ввведите корректный емайл']);
+        }
 
-                if ($subscribe) {
+        $subscribe = Subscribe::where('email', $_POST['email'])->first();
 
-                    echo json_encode(['message' => 'Вы уже подписаны']);
-                } else {
-                    Subscribe::create([
-                        'email' => $_POST['email']
-                    ]);
+        if ($subscribe) {
+            return $this->json(['message' => 'Вы уже подписаны']);
+        } else {
+            Subscribe::create([
+                'email' => $_POST['email']
+            ]);
 
-                    $_SESSION['subscribe'] = 1;
+            $_SESSION['subscribe'] = 1;
 
-                    echo json_encode(['subscribe' => 1]);
-                }
-            }
+
+            return $this->json(['subscribe' => 1]);
         }
     }
 
     public function destroy()
     {
-        $item = Subscribe::where('email', $_POST['email'])->delete();
+        Subscribe::where('email', $_POST['email'])->delete();
 
-        echo json_encode(['subscribe' => 0]);
+        return $this->json(['subscribe' => 0]);
     }
 }

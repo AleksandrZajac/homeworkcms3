@@ -3,16 +3,13 @@
 namespace App\Controllers;
 
 use App\Models\Comment;
-use App\Exception\UserExceptions;
 use App\Config;
 use App\View;
 
-class AdminCommentsController extends BaseController
+class AdminCommentsController extends ModeratorController
 {
     public function edit()
     {
-        UserExceptions::isAdminAndModeratorNotFoundException();
-        $title = 'Комментарии';
         $itemsOnPage = 20;
 
         if (isset($_GET['itemsOnPage'])) {
@@ -27,7 +24,7 @@ class AdminCommentsController extends BaseController
         $comments = $pagination['comments'];
         $pages = $pagination['pages'];
 
-        return new View('comment.edit', compact('title', 'comments', 'pages', 'itemsOnPage', 'statuses'));
+        return new View('comment.edit', compact('comments', 'pages', 'itemsOnPage', 'statuses'));
     }
 
     public function update()

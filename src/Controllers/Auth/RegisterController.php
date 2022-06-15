@@ -12,7 +12,6 @@ class RegisterController extends BaseController
 {
     public function create()
     {
-        $title = 'Создать нового пользователя';
         $validator = new RegisterRequest();
         $errors = $validator->errors();
         $old = $_POST;
@@ -36,14 +35,12 @@ class RegisterController extends BaseController
             $this->redirect('/');
         }
 
-        return new View('authorization.register', compact('title', 'errors', 'old'));
+        return new View('authorization.register', compact('errors', 'old'));
     }
 
     public function showRegisterForm()
     {
-        $title = 'Registration';
-
-        return new View('authorization.register', compact('title'));
+        return new View('authorization.register');
     }
 
     public function logout()

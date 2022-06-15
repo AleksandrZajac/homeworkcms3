@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Article;
-use App\Exception\UserExceptions;
 use App\Models\Subscribe;
 use App\Requests\ArticleRequest;
 use App\View;
@@ -13,7 +12,7 @@ use App\Services\Queries\GetArticleComments;
 use App\Services\Email\SendEmail;
 use App\Services\Settings;
 
-class AdminArticlesController extends BaseController
+class AdminArticlesController extends ModeratorController
 {
     public function index()
     {
@@ -27,17 +26,13 @@ class AdminArticlesController extends BaseController
         $pagination = Article::pagination($settings['items_on_articles_page']);
         $articles = $pagination['articles'];
         $pages = $pagination['pages'];
-        $title = 'Articles';
 
-        return new View('articles.index', compact('articles', 'title', 'pages'));
+        return new View('articles.index', compact('articles', 'pages'));
     }
 
     public function create()
     {
-        UserExceptions::isAdminAndModeratorNotFoundException();
-        $title = 'Создать статью';
-
-        return new View('articles.create', compact('title'));
+        return new View('articles.create');
     }
 
     public function store()
@@ -45,8 +40,6 @@ class AdminArticlesController extends BaseController
         $validator = new ArticleRequest();
         $errors = $validator->errors();
         $shortDescription = preg_match("/^(.{50,}?)\s+/s", $validator->request('description'), $m) ? $m[1] . '...' : $validator->request('description');
-
-        $title = 'Создать статью';
         $old = $_POST;
 
         if (!$errors) {
@@ -70,29 +63,26 @@ class AdminArticlesController extends BaseController
             $this->redirect('/');
         }
 
-        return new View('articles.create', compact('title', 'errors', 'old'));
+        return new View('articles.create', compact('errors', 'old'));
     }
 
     public function show($slug)
     {
         $article = Article::where('slug', $slug)->first();
-        $title = $article->title;
         $_SESSION['article_id'] = $article->id;
         $roles = Config::getInstance()->getConfig('env')['user_role'];
         $statuses = Config::getInstance()->getConfig('env')['status'];
 
         $comments = GetArticleComments::getComments($article->id);
 
-        return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'title'));
+        return new View('articles.show', compact('article', 'comments', 'roles', 'statuses'));
     }
 
     public function edit($slug)
     {
-        UserExceptions::isAdminAndModeratorNotFoundException();
         $old = Article::where('slug', $slug)->first();
-        $title = $old->title;
 
-        return new View('articles.edit', compact('old', 'title'));
+        return new View('articles.edit', compact('old'));
     }
 
     public function update($slug)
@@ -101,7 +91,6 @@ class AdminArticlesController extends BaseController
         $validator = new ArticleRequest($slug);
         $shortDescription = preg_match("/^(.{50,}?)\s+/s", $validator->request('description'), $m) ? $m[1] . '...' : $validator->request('description');
         $errors = $validator->errors();
-        $title = 'Создать статью';
         $old = $_POST;
 
         if (!$errors) {
@@ -133,15 +122,12 @@ class AdminArticlesController extends BaseController
             $this->redirect('/');
         }
 
-        return new View('articles.edit', compact('title', 'errors', 'old'));
+        return new View('articles.edit', compact('errors', 'old'));
     }
 
     public function destroy($slug)
     {
-        $item = Article::where('slug', $slug)->first();
-
-        $item->delete();
-
+        Article::where('slug', $slug)->delete();
         $_SESSION['success'] = 'Статья успешно удалена';
 
         $this->redirect('/');

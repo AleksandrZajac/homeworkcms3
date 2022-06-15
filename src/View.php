@@ -1,9 +1,10 @@
 <?php
 
 namespace App;
+
 use function helpers\includeView;
 
-class View implements \App\Renderable
+class View implements Renderable
 {
     private $path;
     private $file;

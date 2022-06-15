@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Роли пользователей</title>
 <div class="container admin-user-roles">
     <div class="row">
         <div class="col-md-12 blog-main">

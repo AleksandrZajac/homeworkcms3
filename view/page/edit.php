@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Редактировать страницу</title>
 <div class="container">
     <div class="row">
         <div class="col-md-8 blog-main">

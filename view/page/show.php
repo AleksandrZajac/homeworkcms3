@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Страница</title>
 <div class="album py-5 bg-light index-page">
     <div class="container">
         <div class="row">

@@ -7,16 +7,14 @@ use App\Requests\SettingsRequest;
 use App\Exception\UserExceptions;
 use App\View;
 
-class AdminSettingsController extends BaseController
+class AdminSettingsController extends AdminController
 {
     public function edit()
     {
-        UserExceptions::isAdminNotFoundException();
-        $title = 'Настройки';
         $settings = Settings::getSettings();
         $items = $settings['items_on_articles_page'];
 
-        return new View('settings.edit', compact('title', 'items'));
+        return new View('settings.edit', compact('items'));
     }
 
     public function update()
@@ -29,10 +27,9 @@ class AdminSettingsController extends BaseController
             $this->redirect('/');
         }
 
-        $title = 'Настройки';
         $settings = Settings::getSettings();
         $items = $settings['items_on_articles_page'];
 
-        return new View('settings.edit', compact('title', 'items', 'errors'));
+        return new View('settings.edit', compact('items', 'errors'));
     }
 }

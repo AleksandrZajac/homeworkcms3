@@ -3,6 +3,7 @@
 namespace App\Controllers;
 
 use App\Models\StaticPage;
+use App\JsonView;
 use App\Config;
 
 class BaseController
@@ -29,6 +30,11 @@ class BaseController
         unset($_SESSION['login']);
         unset($_SESSION['user_id']);
         header("Location: /");
+    }
+
+    public function json(array $data)
+    {
+        return new JsonView($data);
     }
 
     public function redirect($uri)

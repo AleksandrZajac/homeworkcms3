@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Register</title>
 <div class="container">
     <div class="row">
         <div class="pt-4 pb-5 col-3 offset-4">

@@ -1,5 +1,6 @@
 <?php require VIEW_DIR . 'layout/header.php'; ?>
 
+<title>Редактировать комментарии</title>
 <div class="container admin-comments">
     <div class="row">
         <div class="col-md-12 blog-main">

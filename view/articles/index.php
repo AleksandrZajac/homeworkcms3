@@ -9,6 +9,7 @@
             unset($_SESSION['success']);
         }
         ?>
+        <title>Статьи</title>
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
             <?php foreach ($data['articles'] as $article) : ?>
                 <div class="col-4 pt-2 w-100 h-100">

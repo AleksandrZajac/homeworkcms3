@@ -4,14 +4,11 @@ namespace App\Controllers;
 
 use App\Models\User;
 use App\View;
-use App\Exception\UserExceptions;
 
-class AdminUserRoleController extends BaseController
+class AdminUserRoleController extends AdminController
 {
     public function edit()
     {
-        UserExceptions::isAdminNotFoundException();
-        $title = 'Пользователи';
         $itemsOnPage = 20;
 
         if (isset($_GET['itemsOnPage'])) {
@@ -24,7 +21,7 @@ class AdminUserRoleController extends BaseController
         $users = $pagination['users'];
         $pages = $pagination['pages'];
 
-        return new View('users.roles', compact('users', 'pages', 'title', 'itemsOnPage'));
+        return new View('users.roles', compact('users', 'pages', 'itemsOnPage'));
     }
 
     public function update()
@@ -35,6 +32,6 @@ class AdminUserRoleController extends BaseController
             'role_id' => $_POST['roleId']
         ]);
 
-        echo json_encode("Роль пользователя " . $user['email'] . " успешно изменена");
+        return $this->json(["Роль пользователя " . $user['email'] . " успешно изменена"]);
     }
 }
