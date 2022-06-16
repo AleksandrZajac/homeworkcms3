@@ -10,7 +10,8 @@
     "require": {
         "illuminate/database": "^8.47",
         "illuminate/validation": "^8.47",
-        "illuminate/translation": "^8.47"
+        "illuminate/translation": "^8.47",
+        "illuminate/http": "^8.47"
     },
     "autoload": {
         "psr-4": {
