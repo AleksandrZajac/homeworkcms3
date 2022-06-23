@@ -8,6 +8,7 @@ use App\Controllers\PersonalAreaController;
 use App\Controllers\SubscribeController;
 use App\Controllers\CommentController;
 use App\Controllers\StaticPagesController;
+use App\Controllers\AdminStaticPagesController;
 use App\Controllers\AdminUserRoleController;
 use App\Controllers\AdminCommentsController;
 use App\Controllers\AdminSubscribesController;
@@ -48,13 +49,14 @@ $router->post('/subscribe/destroy/', SubscribeController::class . '@destroy');
 
 $router->post('/articles/*', CommentController::class . '@addComment');
 
-$router->get('/pages/', StaticPagesController::class . '@index');
 $router->get('/page/*', StaticPagesController::class . '@show');
-$router->get('/static_page/create', StaticPagesController::class . '@create');
-$router->post('/static_page/create', StaticPagesController::class . '@store');
-$router->get('/static_page/*/edit', StaticPagesController::class . '@edit');
-$router->post('/static_page/*/edit', StaticPagesController::class . '@update');
-$router->post('/page/*/delete', StaticPagesController::class . '@destroy');
+
+$router->get('/pages/', AdminStaticPagesController::class . '@index');
+$router->get('/static_page/create', AdminStaticPagesController::class . '@create');
+$router->post('/static_page/create', AdninStaticPagesController::class . '@store');
+$router->get('/static_page/*/edit', AdminStaticPagesController::class . '@edit');
+$router->post('/static_page/*/edit', AdminStaticPagesController::class . '@update');
+$router->post('/page/*/delete', AdminStaticPagesController::class . '@destroy');
 
 $router->get('/admin/user/role', AdminUserRoleController::class . '@edit');
 $router->post('/user/role/*/edit', AdminUserRoleController::class . '@update');

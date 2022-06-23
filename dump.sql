@@ -59,30 +59,6 @@ INSERT INTO `articles` (`id`, `owner_id`, `slug`, `title`, `image`, `description
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `books`
---
-
-DROP TABLE IF EXISTS `books`;
-CREATE TABLE `books` (
-  `id` int(11) NOT NULL,
-  `name` varchar(255) NOT NULL,
-  `created_at` datetime NOT NULL,
-  `updated_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- Дамп данных таблицы `books`
---
-
-INSERT INTO `books` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'Возвращение клана', '2021-06-02 00:00:00', '2021-06-17 00:00:00'),
-(2, 'Горячая помощница для Морозко', '2021-06-04 00:00:00', '2021-06-12 00:00:00'),
-(3, 'Ведьминский патруль', '2021-06-02 00:00:00', '2021-06-17 00:00:00'),
-(4, 'Солнце для речного демона', '2021-06-04 00:00:00', '2021-06-12 00:00:00');
-
--- --------------------------------------------------------
-
---
 -- Структура таблицы `comments`
 --
 
@@ -137,8 +113,8 @@ CREATE TABLE `pages` (
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `short_description` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `is_published` tinyint(1) NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -182,8 +158,8 @@ DROP TABLE IF EXISTS `subscribes`;
 CREATE TABLE `subscribes` (
   `id` bigint(20) NOT NULL,
   `email` varchar(100) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `created_at` timestamp NOT NULL,
-  `updated_at` timestamp NOT NULL
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 --
@@ -250,12 +226,6 @@ ALTER TABLE `articles`
   ADD KEY `articles_owner_id_foreign` (`owner_id`);
 
 --
--- Индексы таблицы `books`
---
-ALTER TABLE `books`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Индексы таблицы `comments`
 --
 ALTER TABLE `comments`
@@ -299,12 +269,6 @@ ALTER TABLE `users`
 --
 ALTER TABLE `articles`
   MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
-
---
--- AUTO_INCREMENT для таблицы `books`
---
-ALTER TABLE `books`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT для таблицы `comments`
