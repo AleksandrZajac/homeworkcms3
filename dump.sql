@@ -21,6 +21,7 @@ SET time_zone = "+00:00";
 --
 -- База данных: `homeworkcms`
 --
+DROP DATABASE IF EXISTS `homeworkcms`;
 CREATE DATABASE IF NOT EXISTS `homeworkcms` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 USE `homeworkcms`;
 
