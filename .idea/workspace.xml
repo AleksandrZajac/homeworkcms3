@@ -4,44 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f44b898f-fa37-4885-8e44-90829c74085b" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/deployment.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/homeworkcms3.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/sshConfigs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/webServers.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/admin.php" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/uploads/1651749061.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/configs/db.php" beforeDir="false" afterPath="$PROJECT_DIR$/configs/db.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dump.sql" beforeDir="false" afterPath="$PROJECT_DIR$/dump.sql" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index_extr.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminCommentsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminCommentsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminSettingsController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminSettingsController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminStaticPagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminStaticPagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminSubscribesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminSubscribesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/AdminUserRoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/AdminUserRoleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/ArticlesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/ArticlesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/BaseController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/BaseController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/CommentController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/CommentController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/PersonalAreaController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/PersonalAreaController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/StaticPagesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/StaticPagesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Controllers/SubscribeController.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Controllers/SubscribeController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Article.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Article.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Comment.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Comment.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/StaticPage.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/StaticPage.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/Subscribe.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/Subscribe.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Requests/LoginRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/src/Requests/LoginRequest.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/articles/index.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/articles/index.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/articles/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/articles/show.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/comment/edit.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/comment/edit.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/view/personal/area/show.php" beforeDir="false" afterPath="$PROJECT_DIR$/view/personal/area/show.php" afterDir="false" />
-    </list>
+    <list default="true" id="f44b898f-fa37-4885-8e44-90829c74085b" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +50,7 @@
       <option name="presentableId" value="Default" />
       <updated>1656364951065</updated>
       <workItem from="1656364952485" duration="3802000" />
-      <workItem from="1656443707335" duration="3515000" />
+      <workItem from="1656443707335" duration="3970000" />
     </task>
     <servers />
   </component>
