@@ -53,7 +53,7 @@ $router->get('/page/*', StaticPagesController::class . '@show');
 
 $router->get('/pages/', AdminStaticPagesController::class . '@index');
 $router->get('/static_page/create', AdminStaticPagesController::class . '@create');
-$router->post('/static_page/create', AdninStaticPagesController::class . '@store');
+$router->post('/static_page/create', AdminStaticPagesController::class . '@store');
 $router->get('/static_page/*/edit', AdminStaticPagesController::class . '@edit');
 $router->post('/static_page/*/edit', AdminStaticPagesController::class . '@update');
 $router->post('/page/*/delete', AdminStaticPagesController::class . '@destroy');
@@ -63,6 +63,7 @@ $router->post('/user/role/*/edit', AdminUserRoleController::class . '@update');
 
 $router->get('/admin/comments', AdminCommentsController::class . '@edit');
 $router->post('/admin/comment/*/edit', AdminCommentsController::class . '@update');
+$router->post('/admin/comment/*/delete', AdminCommentsController::class . '@destroy');
 
 $router->get('/admin/subscribes', AdminSubscribesController::class . '@edit');
 $router->post('/admin/subscribes/*/delete', AdminSubscribesController::class . '@destroy');

@@ -12,6 +12,7 @@
                         <th scope="col">Comment</th>
                         <th scope="col">created_at</th>
                         <th scope="col">status</th>
+                        <th scope="col">delete</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,6 +27,11 @@
                                     <option value="2" <?= $value->status == $data['statuses']['rejected'] ? 'selected' : '' ?>>Отклонено</option>
                                     <option value="3" <?= $value->status == $data['statuses']['moderation'] ? 'selected' : '' ?>>На модерации</option>
                                 </select>
+                            </td>
+                            <td>
+                                <form method="POST" action="/admin/comment/<?= $value->id; ?>/delete">
+                                    <button type="submit" class="btn btn-sm btn-outline-secondary">Удалить</button>
+                                </form>
                             </td>
                         </tr>
                     <?php endforeach; ?>

@@ -21,7 +21,11 @@
                             <p class="card-text"><?= $article->short_description ?></p>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="/articles/<?= $article->slug ?>" class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                                    <?php if (!$_SESSION['is_admin'] && !$_SESSION['is_moderator']) : ?>
+                                        <a href="/articles/<?= $article->slug ?>" class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                                    <?php else : ?>
+                                        <a href="/admin/articles/<?= $article->slug ?>" class="btn btn-sm btn-outline-secondary">Посмотреть</a>
+                                    <?php endif ;?>
                                 </div>
                                 <small class="text-muted"><?= $article->updated_at ?></small>
                             </div>

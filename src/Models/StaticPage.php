@@ -35,4 +35,9 @@ class StaticPage extends Model
 
         return $pagintion;
     }
+
+    public static function getBySlug($slug)
+    {
+        return StaticPage::where('slug', $slug)->first();
+    }
 }

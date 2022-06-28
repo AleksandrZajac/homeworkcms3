@@ -50,4 +50,9 @@ class Subscribe extends Model
 
         return $pagintion;
     }
+
+    public static function getByEmail($email)
+    {
+        return Subscribe::where('email', $email)->first();
+    }
 }

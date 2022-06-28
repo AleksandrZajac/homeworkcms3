@@ -55,4 +55,20 @@ class Article extends Model
 
         return $pagintion;
     }
+
+    public static function getById($id)
+    {
+        return Article::where('id', $id)->first();
+    }
+
+    public static function getBySlug($slug, $isPublished = 0)
+    {
+        if (!$isPublished) {
+            return Article::where('slug', $slug)->first();
+        }
+        return Article::where([
+            ['slug', $slug],
+            ['is_published', $isPublished]
+            ])->first();
+    }
 }

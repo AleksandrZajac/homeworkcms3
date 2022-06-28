@@ -9,9 +9,8 @@ class StaticPagesController extends BaseController
 {
     public function show($slug)
     {
-        $page = StaticPage::where('slug', $slug)->first();
-        $allPages = StaticPage::all();
+        $page = StaticPage::getBySlug($slug);
 
-        return new View('page.show', compact('page', 'allPages'));
+        return new View('page.show', compact('page'));
     }
 }

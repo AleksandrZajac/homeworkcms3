@@ -29,10 +29,18 @@ class AdminCommentsController extends ModeratorController
 
     public function update()
     {
-        $comment = Comment::where('id', $_POST['commentId'])->first();
+        $comment = Comment::getById($_POST['commentId']);
 
         $comment->update([
             'status' => $_POST['status']
         ]);
+    }
+
+    public function destroy($id)
+    {
+        Comment::where('id', $id)->delete();
+        $_SESSION['success'] = 'Комментарий успешно удален';
+
+        $this->redirect('/admin/comments');
     }
 }

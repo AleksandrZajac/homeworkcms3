@@ -36,10 +36,10 @@ class AdminSubscribesController extends AdminController
     {
         $validator = new SubscribeRequest();
         $errors = $validator->errors();
-        $subscribe = Subscribe::where('email', $_POST['email'])->first();
-        $subscribe ? $errors[] = 'Пользователь уже подписан' : '';
 
-        if (!$errors) {
+        if (Subscribe::getByEmail($_POST['email'])) {
+            $errors[] = 'Пользователь уже подписан';
+        } elseif (!$errors) {
             Subscribe::create([
                 'email' => $validator->request('email'),
             ]);

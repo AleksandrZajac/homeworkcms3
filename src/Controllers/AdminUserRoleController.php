@@ -26,7 +26,7 @@ class AdminUserRoleController extends AdminController
 
     public function update()
     {
-        $user = User::where('id', $_POST['userId'])->first();
+        $user = User::getById($_POST['userId']);
 
         $user->update([
             'role_id' => $_POST['roleId']

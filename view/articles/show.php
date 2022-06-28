@@ -4,7 +4,6 @@
 <div class="container">
     <div class="row">
         <div class="pt-4 pb-5 col-6 offset-3">
-            <?php if ($data['article']->is_published) : ?>
                 <div class="card shadow-sm">
                     <img src="<?= $data['article']->image ?>" alt="Card image">
                     <div class="card-body">
@@ -57,9 +56,6 @@
                         <hr>
                     </div>
                 </div>
-            <?php else : ?>
-                <h4>Запрашиваемая страница не существует</h4>
-            <?php endif; ?>
         </div>
     </div>
 </div>

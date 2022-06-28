@@ -56,14 +56,14 @@ class AdminStaticPagesController extends ModeratorController
 
     public function edit($slug)
     {
-        $oldValues = StaticPage::where('slug', $slug)->first();
+        $oldValues = StaticPage::getBySlug($slug);
 
         return new View('page.edit', compact('oldValues'));
     }
 
     public function update($slug)
     {
-        $page = StaticPage::where('slug', $slug)->first();
+        $page = StaticPage::getBySlug($slug);
         $oldValues = $_POST;
         $validator = new StaticPageRequest($slug);
         $shortDescription = preg_match("/^(.{50,}?)\s+/s", $validator->request('description'), $m) ? $m[1] . '...' : $validator->request('description');

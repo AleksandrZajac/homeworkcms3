@@ -30,6 +30,7 @@ class BaseController
         unset($_SESSION['login']);
         unset($_SESSION['user_id']);
         header("Location: /");
+        exit();
     }
 
     public function json(array $data)

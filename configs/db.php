@@ -3,7 +3,7 @@
 return [
     'driver' => 'mysql',
     'host' => 'localhost',
-    'username' => 'root',
-    'password' => '',
+    'username' => 'student',
+    'password' => 'student',
     'database' => 'homeworkcms',
 ];

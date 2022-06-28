@@ -69,4 +69,9 @@ class User extends Model
 
         return $pagintion;
     }
+
+    public static function getById($id)
+    {
+        return User::where('id', $id)->first();
+    }
 }

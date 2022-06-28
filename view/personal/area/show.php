@@ -13,7 +13,7 @@
                 <?php endif; ?>
                 <form method="POST" action="/user/id/<?= $data['old']->id ?>" enctype="multipart/form-data">
                     <div class="m-3">
-                        <img class="avatar rounded-circle" src="<?= $data['old']['avatar'] ?>" alt="Фото">
+                        <img class="avatar rounded-circle" src="<?= $data['avatar'] ?>" alt="Фото">
                     </div>
                     <div class="m-3">
                         <strong>Аватар:</strong>

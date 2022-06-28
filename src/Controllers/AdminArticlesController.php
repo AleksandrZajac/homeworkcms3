@@ -16,7 +16,7 @@ class AdminArticlesController extends ModeratorController
 {
     public function index()
     {
-        if (isset($_SESSION['login']) && Subscribe::where('email', $_SESSION['login'])->first()) {
+        if (isset($_SESSION['login']) && Subscribe::getByEmail($_SESSION['login'])) {
             $_SESSION['subscribe'] = 1;
         } else {
             $_SESSION['subscribe'] = 0;
@@ -68,7 +68,7 @@ class AdminArticlesController extends ModeratorController
 
     public function show($slug)
     {
-        $article = Article::where('slug', $slug)->first();
+        $article = Article::getBySlug($slug);
         $_SESSION['article_id'] = $article->id;
         $roles = Config::getInstance()->getConfig('env')['user_role'];
         $statuses = Config::getInstance()->getConfig('env')['status'];
@@ -80,14 +80,14 @@ class AdminArticlesController extends ModeratorController
 
     public function edit($slug)
     {
-        $old = Article::where('slug', $slug)->first();
+        $old = Article::getBySlug($slug);
 
         return new View('articles.edit', compact('old'));
     }
 
     public function update($slug)
     {
-        $article = Article::where('slug', $slug)->first();
+        $article = Article::getBySlug($slug);
         $validator = new ArticleRequest($slug);
         $shortDescription = preg_match("/^(.{50,}?)\s+/s", $validator->request('description'), $m) ? $m[1] . '...' : $validator->request('description');
         $errors = $validator->errors();

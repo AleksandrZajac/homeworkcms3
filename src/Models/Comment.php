@@ -56,4 +56,9 @@ class Comment extends Model
 
         return $pagintion;
     }
+
+    public static function getById($id)
+    {
+        return Comment::where('id', $id)->first();
+    }
 }

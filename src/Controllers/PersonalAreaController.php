@@ -14,21 +14,25 @@ class PersonalAreaController extends BaseController
     {
         $_SESSION['subscribe'] = 0;
 
-        if (Subscribe::where('email', $_SESSION['login'])->first()) {
+        if (Subscribe::getByEmail($_SESSION['login'])) {
             $_SESSION['subscribe'] = 1;
         }
 
-        $old = User::where('id', $id)->first();
+        $old = User::getById($id);
+        $avatar = '/uploads/1651749061.png';
 
-        return new View('personal.area.show', compact('old'));
+        if ($old->avatar) {
+            $avatar = $old->avatar;
+        }
+
+        return new View('personal.area.show', compact('old', 'avatar'));
     }
 
     public function update($id)
     {
-        $article = User::where('id', $id)->first();
+        $article = User::getById($id);
         $validator = new PersonalAreaRequest($id);
         $errors = $validator->errors();
-        $old = $_POST;
 
         if (!$errors) {
             $image = new File('avatar');
@@ -48,7 +52,7 @@ class PersonalAreaController extends BaseController
 
             $_SESSION['success'] = 'Статья успешно обновлена';
 
-            $this->redirect("/user/id/$id");
+            $this->redirect('/user/id/' . $id);
         }
 
         return new View('personal.area.show', compact('errors'));

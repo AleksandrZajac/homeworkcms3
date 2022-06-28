@@ -12,7 +12,7 @@ use App\Services\Queries\GetArticleComments;
 
 class CommentController extends BaseController
 {
-    public function addComment($slug)
+    public function addComment()
     {
         $validator = new CommentRequest();
         $roles = Config::getInstance()->getConfig('env')['user_role'];
@@ -20,14 +20,13 @@ class CommentController extends BaseController
 
         if (!isset($_SESSION['user_id'])) {
             $errors[] = 'Не авторизованный пользователь не может оставить комментарий';
-            $article = Article::where('id', $_SESSION['article_id'])->first();
+            $article = Article::getById($_SESSION['article_id']);
             $comments = GetArticleComments::getComments($article->id);
 
             return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'errors'));
         }
 
         $errors = $validator->errors();
-        $user = User::where('id', $_SESSION['user_id'])->first();
         $status = $statuses['moderation'];
         if ($this->isAdmin() || $this->isModerator()) {
             $status = $statuses['allowed'];
@@ -42,7 +41,7 @@ class CommentController extends BaseController
             ]);
         }
 
-        $article = Article::where('id', $_SESSION['article_id'])->first();
+        $article = Article::getById($_SESSION['article_id']);
         $comments = GetArticleComments::getComments($article->id);
 
         return new View('articles.show', compact('article', 'comments', 'roles', 'statuses', 'errors'));

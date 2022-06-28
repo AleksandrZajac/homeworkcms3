@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Services\Settings;
 use App\Requests\SettingsRequest;
-use App\Exception\UserExceptions;
 use App\View;
 
 class AdminSettingsController extends AdminController

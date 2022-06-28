@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="07648946-0df3-42a6-a391-a0dceda3025e" name="192.168.0.11">
+        <fileTransfer rootFolder="/var/www/homeworkcms3" accessType="SFTP" host="192.168.0.11" port="22" sshConfigId="b9f14035-be92-4eed-80eb-c1bc21020ed6" sshConfig="alex@192.168.0.11:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" keepAliveTimeout="0" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

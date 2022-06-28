@@ -22,7 +22,7 @@ class LoginRequest
     {
         return [
             'email'  => 'required|email',
-            'password' => 'required|min:6|max:12',
+            'password' => 'required|min:6|max:100',
         ];
     }
 }

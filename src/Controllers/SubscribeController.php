@@ -3,7 +3,6 @@
 namespace App\Controllers;
 
 use App\Models\Subscribe;
-use App\JsonView;
 
 class SubscribeController extends BaseController
 {
@@ -17,9 +16,7 @@ class SubscribeController extends BaseController
             return $this->json(['message' => 'Ввведите корректный емайл']);
         }
 
-        $subscribe = Subscribe::where('email', $_POST['email'])->first();
-
-        if ($subscribe) {
+        if (Subscribe::getByEmail($_POST['email'])) {
             return $this->json(['message' => 'Вы уже подписаны']);
         } else {
             Subscribe::create([
